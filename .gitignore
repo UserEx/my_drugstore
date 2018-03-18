@@ -2,3 +2,5 @@
 /vendor/
 /.buildpath
 /.settings/
+/node_modules/
+/.sass-cache/
