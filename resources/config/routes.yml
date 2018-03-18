@@ -1,0 +1,5 @@
+hello_world:
+    path: /
+    controller: UserEx\MyDrugstore\Controllers\HelloWorldController
+    action: indexAction
+    method: GET

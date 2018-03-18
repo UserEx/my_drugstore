@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			{% block header_title %}My drugstore{% endblock %}
+		</title>
+	</head>
+	<body>
+		<section>
+    		<header>
+        		{% block header %}
+        			<h1>My drugstore</h1>
+        		{% endblock %}
+        	</header>	
+    		{% block content %}		{% endblock %}
+		</section>
+		<footer class="info">
+			{% block footer %}
+
+			{% endblock %}
+		</footer>
+		
+		{% block js %}		
+    	{% endblock %}
+	</body>
+</html>
