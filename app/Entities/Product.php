@@ -6,8 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Product
  *
- * @ORM\Entity(repositoryClass="UserEx\Todo\Repositories\ProductRepository")
- * @ORM\Table(name="product")
+ * @ORM\Entity(repositoryClass="UserEx\MyDrugstore\Repositories\ProductRepository")
+ * @ORM\Table(name="product", indexes={@ORM\Index(columns={"product_name", "description"}, flags={"fulltext"})})
  */
 class Product
 {
@@ -23,7 +23,7 @@ class Product
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=512)
+     * @ORM\Column(name="product_name", type="string", length=512)
      */
     private $name;
     
@@ -59,7 +59,7 @@ class Product
     /**
      * @var string
      * 
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
     
@@ -76,72 +76,116 @@ class Product
     /**
      * @return string
      */
-    public function getTitle()
+    public function getName()
     {
-        return $this->title;
+        return $this->name;
     }
 
     /**
-     * @param string $title
+     * @param string $name
      * 
      * @return Product
      */
-    public function setTitle($title)
+    public function setName($name)
     {
-        $this->title = $title;
+        $this->name = $name;
         
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getUser()
+    public function getPrice()
     {
-        return $this->user;
+        return $this->price;
     }
 
     /**
-     * @param mixed $user
+     * @param float $price
      * 
      * @return Product
      */
-    public function setUser($user)
+    public function setPrice($price)
     {
-        $this->user = $user;
+        $this->price = $price;
         
         return $this;
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function isCompleted()
+    public function getProducingCountry()
     {
-        return $this->completed;
+        return $this->producingCountry;
     }
 
     /**
-     * @param boolean $completed
+     * @param string $producingCountry
      * 
      * @return Product
      */
-    public function setCompleted($completed)
+    public function setProducingCountry($producingCountry)
     {
-        $this->completed = $completed;
+        $this->producingCountry = $producingCountry;
         
         return $this;
     }
     
     /**
-     * @return array
+     * @return string
      */
-    public function toArray()
+    public function getManufacturer()
     {
-        return array(
-            'id' => $this->getId(), 
-            'title' => $this->getTitle(), 
-            'completed' => $this->isCompleted()
-        );
+        return $this->manufacturer;
+    }
+
+    /**
+     * @param string $manufacturer
+     */
+    public function setManufacturer($manufacturer)
+    {
+        $this->manufacturer = $manufacturer;
+    }
+
+    /**
+     * @return Date
+     */
+    public function getExpiryDate()
+    {
+        return $this->expiryDate;
+    }
+
+    /**
+     * @param \Date $expiryDate
+     * 
+     * @return Product
+     */
+    public function setExpiryDate($expiryDate)
+    {
+        $this->expiryDate = $expiryDate;
+        
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     * 
+     * @return Product
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        
+        return $this;
     }
 }

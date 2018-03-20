@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block page_header %}Добавить товар{% endblock %}
+
+
+{% block content %}
+	<form action="{{ path('product_add') }}" method="post">
+        <div class="form-group">
+            <label for="name">Название</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Например: Компливит">
+        </div>
+        <div class="form-group">
+            <label for="description">Описание</label>
+            <textarea class="form-control" id="description" name="description" placeholder="Например: таблетки покрытые оболочкой банка пластиковая №60"></textarea>
+		</div>
+        <div class="form-group">
+            <label for="producing_country">Страна производства</label>
+            <input type="text" class="form-control" id="producing_country" name="producing_country" placeholder="Например: Россия">
+		</div>
+        <div class="form-group">
+            <label for="manufacturer">Производитель</label>
+            <input type="text" class="form-control" id="manufacturer" name="manufacturer" placeholder="Например: Фармстандарт-УфаВита ОАО">
+		</div>
+		<div class="form-group">
+            <label for="expiry_date">Срок годности</label>
+            <input type="date" class="form-control" id="expiry_date" name="expiry_date">
+        </div>
+        <div class="form-group">
+            <label for="price">Цена</label>
+            <input type="number" class="form-control" id="price" name="price" placeholder="Например: 250">
+        </div>
+        <div class="form-group text-center">
+      		<button type="submit" class="btn btn-primary">Добавить</button>
+    	</div>
+	</form>
+	{% if invalid_feedback is defined %}
+	    {{ dump(invalid_feedback) }}
+    {% endif %}
+{% endblock %}

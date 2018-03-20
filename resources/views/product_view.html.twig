@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block page_header %}{% endblock %}
+
+
+{% block content %}
+	<div class="row justify-content-center">
+		<div class="col-md-6">
+        	<div class="card mb-4 box-shadow">
+                <div class="card-header">
+                	<h4 class="my-0 font-weight-normal">{{ product.name }}</h4>
+                </div>
+                <div class="card-body">
+                	<div class="row align-items-center mb-4">
+                		<div class="col-sm text-muted clearfix">
+                			{% if product.manufacturer %}
+                    			{{ product.manufacturer ~ (product.producingCountry ? ',' : '') }}
+                    		{% endif %}
+                    		{{ (product.producingCountry ? product.producingCountry : '') }}
+                		</div>
+                		<div class="col-sm">
+                			<h1 class="float-right"><span class="badge badge-info">{{ product.price }} р.</span></h1>
+                		</div>
+                	</div>
+                	<div class="clearfix">
+                		<p>{{ product.description }}</p>
+                	</div>
+                	<div class="text-muted text-right">
+                		{{product.expiryDate ? 'годен до: ' ~ (product.expiryDate | date('d.m.Y')) : ''  }}
+                	</div>
+                 	<div class="row justify-content-around mt-4">
+                 		<button type="button" class="col-md-4 btn btn-primary">Изменить</button>
+                 		<button type="button" class="col-md-4 btn btn-warning">Удалить</button>
+                 	</div>
+                </div>
+            </div>
+		</div>
+    </div>
+{% endblock %}

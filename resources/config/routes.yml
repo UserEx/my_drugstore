@@ -3,3 +3,21 @@ hello_world:
     controller: UserEx\MyDrugstore\Controllers\HelloWorldController
     action: indexAction
     method: GET
+    
+product_new:
+    path: /new
+    controller: UserEx\MyDrugstore\Controllers\ProductController
+    action: newAction
+    method: GET
+    
+product_add:
+    path: /add
+    controller: UserEx\MyDrugstore\Controllers\ProductController
+    action: addAction
+    method: POST
+    
+product_view:
+    path: /view
+    controller: UserEx\MyDrugstore\Controllers\ProductController
+    action: viewAction
+    method: GET

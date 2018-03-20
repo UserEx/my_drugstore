@@ -116,7 +116,10 @@ class Kernel
             $twig = new \Twig_Environment($loader, array(
                 'cache' => $this->twigCompilationCache,
                 'auto_reload' => true,
+                'debug' => true,
             ));
+            
+            $twig->addExtension(new \Twig_Extension_Debug());
 
             return $twig;
         };
@@ -158,7 +161,7 @@ class Kernel
         list($controller, $action) = $router->getController($request);
         
         try {
-            if (class_exists($controller, fasle) && method_exists($controller, $action)) {
+            if (class_exists($controller) && method_exists($controller, $action)) {
                 $controller = new $controller($this->container);    
                 $response = $controller->$action($request);
             } else {
