@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block page_header %}Список товаров{% endblock %}
+
+
+{% block content %}
+	<table class="table table-striped">
+    	<thead>
+            <tr>
+              	<th scope="col">#</th>
+                <th scope="col">Название</th>
+                <th scope="col">Фирма</th>
+    			<th scope="col">Страна</th>
+    			<th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+        	{% for product in products %}        
+                <tr>
+                  	<th scope="row">{{ product.id }}</th>
+                  	<td>{{ product.name }}</td>
+                  	<td>{{ product.manufacturer }}</td>
+                  	<td>{{ product.producingCountry }}</td>
+                  	<td>
+                  		<a class="btn btn-sm btn-info" href="{{ path('product_view') ~ '?id=' ~ product.id }}" role="button">посмотреть</a>
+                  		<a class="btn btn-sm btn-primary" href="{{ path('product_edit') ~ '?id=' ~ product.id }}" role="button">Изменить</a>
+                 		<a class="btn btn-sm btn-warning" href="{{ path('product_delete') ~ '?id=' ~ product.id }}" role="button">Удалить</a>
+                  	</td>
+                </tr>            	
+        	{% endfor %}
+        </tbody>
+	</table>	
+{% endblock %}
+	

@@ -34,7 +34,7 @@
              	<div class="container d-flex flex-column flex-md-row align-items-center p-3 px-md-4">
                 	<h5 class="my-0 mr-md-auto font-weight-normal">Аптека у Айболита</h5>
               		<nav class="my-2 my-md-0 mr-md-3">
-                        <a class="p-2 text-dark" href="#">Список товаров</a>
+                        <a class="p-2 text-dark" href="{{ path('product_list') }}">Список товаров</a>
                         <a class="p-2 text-dark" href="{{ path('product_new') }}">Добавить товар</a>
                         <a class="p-2 text-dark" href="#">О нас</a>
             	    </nav>
@@ -45,12 +45,21 @@
 {#             </header>#}
         
             <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        	    <h1 class="display-4">
+        	    <h1 class="display-5">
         			{% block page_header %}{% endblock %}  
                 </h1>
             </div>
     		<div class="container">
     			{% block content %}{% endblock %}
+    			
+    			{# Этот невидимый футер нужен для скролинга контента #}
+    			<footer class="invisible">
+                  	<div class="container p-4  p-md-5">
+                  		<div class="text-center">
+                  			Copyright © 2018 Мухаматинов Ильдар	
+                  		</div>
+                	</div>
+                </footer>
     		</div>
 			
     

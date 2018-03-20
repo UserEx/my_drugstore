@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block page_header %}{{ action == 'add' ? 'Добавить товар' : (action == 'edit' ? 'Изменить товар' : '') }}{% endblock %}
+
+
+{% block content %}
+	{% set path_name = action == 'add' ? 'product_add' : (action == 'edit' ? 'product_save' : '') %}
+	<form action="{{ path(path_name) }}" method="post" class="{{ invalid_feedback ? 'was-validated' : '' }}" novalidate>
+		<input type="hidden" name="action" value="{{ action }}">
+        {% if action == 'edit' %}
+        	<input type="hidden" name="id" value="{{ product.id }}">
+        {% endif %}
+        <div class="form-group">
+            <label for="name">Название</label>
+            <input type="text" class="form-control" id="name" name="name" required placeholder="Например: Компливит" value="{{ product.name }}">
+            {% if invalid_feedback and invalid_feedback.name %}
+           		<div class="invalid-feedback">
+        			{{ invalid_feedback['name'] }}
+				</div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="description">Описание</label>
+            <textarea class="form-control" id="description" name="description" placeholder="Например: таблетки покрытые оболочкой банка пластиковая №60">{{ product.description }}</textarea>
+		</div>
+        <div class="form-group">
+            <label for="producing_country">Страна производства</label>
+            <input type="text" class="form-control" id="producing_country" name="producing_country" placeholder="Например: Россия" value="{{ product.producingCountry }}">
+		</div>
+        <div class="form-group">
+            <label for="manufacturer">Производитель</label>
+            <input type="text" class="form-control" id="manufacturer" name="manufacturer" placeholder="Например: Фармстандарт-УфаВита ОАО" value="{{ product.manufacturer }}">
+		</div>
+		<div class="form-group">
+            <label for="expiry_date">Срок годности</label>
+            <input type="date" class="form-control" id="expiry_date" name="expiry_date" value="{{ product.expiryDate | date("Y-m-d") }}">
+        </div>
+        <div class="form-group">
+            <label for="price">Цена</label>
+            <input type="number" class="form-control" id="price" name="price" required placeholder="Например: 250" value="{{ product.price }}">
+            {% if invalid_feedback and invalid_feedback.price %}
+           		<div class="invalid-feedback">
+        			{{ invalid_feedback['price'] }}
+				</div>
+            {% endif %}
+        </div>
+        <div class="form-group text-center mb-3">
+      		<button type="submit" class="btn btn-primary">
+      			{% if action == 'edit' %}
+      				Сохранить
+				{% elseif action == 'add' %}
+					Добавить
+				{% endif %}
+			</button>
+    	</div>
+	</form>
+{% endblock %}

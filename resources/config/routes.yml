@@ -4,6 +4,12 @@ hello_world:
     action: indexAction
     method: GET
     
+product_list:
+    path: /list
+    controller: UserEx\MyDrugstore\Controllers\ProductController
+    action: listAction
+    method: GET
+    
 product_new:
     path: /new
     controller: UserEx\MyDrugstore\Controllers\ProductController
@@ -13,11 +19,29 @@ product_new:
 product_add:
     path: /add
     controller: UserEx\MyDrugstore\Controllers\ProductController
-    action: addAction
+    action: saveAction
     method: POST
     
 product_view:
     path: /view
     controller: UserEx\MyDrugstore\Controllers\ProductController
     action: viewAction
+    method: GET
+
+product_edit:
+    path: /edit
+    controller: UserEx\MyDrugstore\Controllers\ProductController
+    action: editAction
+    method: GET
+    
+product_save:
+    path: /save
+    controller: UserEx\MyDrugstore\Controllers\ProductController
+    action: saveAction
+    method: POST
+    
+product_delete:
+    path: /delete
+    controller: UserEx\MyDrugstore\Controllers\ProductController
+    action: deleteAction
     method: GET

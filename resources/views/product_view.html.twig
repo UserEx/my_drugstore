@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block page_header %}{% endblock %}
+{% block page_header %}Карточка товара{% endblock %}
 
 
 {% block content %}
@@ -29,8 +29,8 @@
                 		{{product.expiryDate ? 'годен до: ' ~ (product.expiryDate | date('d.m.Y')) : ''  }}
                 	</div>
                  	<div class="row justify-content-around mt-4">
-                 		<button type="button" class="col-md-4 btn btn-primary">Изменить</button>
-                 		<button type="button" class="col-md-4 btn btn-warning">Удалить</button>
+                 		<a class="col-md-4 btn btn-primary" href="{{ path('product_edit') ~ '?id=' ~ product.id }}" role="button">Изменить</a>
+                 		<a class="col-md-4 btn btn-warning" href="{{ path('product_delete') ~ '?id=' ~ product.id }}" role="button">Удалить</a>
                  	</div>
                 </div>
             </div>
