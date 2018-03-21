@@ -4,13 +4,16 @@
 
 
 {% block content %}
+	<form method="get">
+		<input type="text" name="search">
+	</form>
+{# 	{{ dump(products) }}#}
 	<table class="table table-striped">
     	<thead>
             <tr>
               	<th scope="col">#</th>
                 <th scope="col">Название</th>
-                <th scope="col">Фирма</th>
-    			<th scope="col">Страна</th>
+                <th scope="col">Описание</th>
     			<th scope="col"></th>
             </tr>
         </thead>
@@ -19,9 +22,9 @@
                 <tr>
                   	<th scope="row">{{ product.id }}</th>
                   	<td>{{ product.name }}</td>
-                  	<td>{{ product.manufacturer }}</td>
-                  	<td>{{ product.producingCountry }}</td>
-                  	<td>
+                  	<td class="small">{{ product.description }}</td>
+{#                   	<td>{{ product.producingCountry }}</td>#}
+                  	<td class="text-center">
                   		<a class="btn btn-sm btn-info" href="{{ path('product_view') ~ '?id=' ~ product.id }}" role="button">посмотреть</a>
                   		<a class="btn btn-sm btn-primary" href="{{ path('product_edit') ~ '?id=' ~ product.id }}" role="button">Изменить</a>
                  		<a class="btn btn-sm btn-warning" href="{{ path('product_delete') ~ '?id=' ~ product.id }}" role="button">Удалить</a>

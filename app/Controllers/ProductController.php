@@ -7,6 +7,8 @@ use UserEx\MyDrugstore\Core\Response;
 use UserEx\MyDrugstore\Entities\Product;
 use UserEx\MyDrugstore\Core\RedirectResponse;
 use UserEx\MyDrugstore\Core\Exceptions\NotFoundException;
+use UserEx\MyDrugstore\Repositories\ProductRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 class ProductController extends Controller
 {
@@ -19,8 +21,37 @@ class ProductController extends Controller
     {
         $em = $this->container['em'];
         
-        $products = $em->getRepository('UserEx\MyDrugstore\Entities\Product')
-            ->findAll();
+        /* @var $repository ProductRepository */
+        $repository = $em->getRepository('UserEx\MyDrugstore\Entities\Product');
+        
+        if ($search = $request->getQuery('search')) {
+            
+            $keywordsArray = explode(' ', $search);
+            foreach ($keywordsArray as $index => $keyword) {
+                $keywordsArray[$index] = '' . $keyword . '';
+            }
+            $keywords = implode('', $keywordsArray);
+            
+            
+            $rsm = new ResultSetMapping();
+            $rsm->addEntityResult('UserEx\MyDrugstore\Entities\Product', 'p');
+            $rsm->addFieldResult('p', 'id', 'id');
+            $rsm->addFieldResult('p', 'product_name', 'name');
+            $rsm->addFieldResult('p', 'producing_country', 'producingCountry');
+            $rsm->addFieldResult('p', 'manufacturer', 'manufacturer');
+            $rsm->addFieldResult('p', 'description', 'description');            
+            $rsm->addFieldResult('p', 'price', 'price');
+            
+            
+            $query = $em->createNativeQuery('SELECT id, product_name, description, manufacturer, producing_country, expiry_date FROM product WHERE MATCH(product_name, description) AGAINST( ? IN BOOLEAN MODE)', $rsm);
+            $query->setParameter(1, '\'+'. $keywords .'\'*');
+            error_log('debug: listAction! keywords = ' . $keywords, E_USER_NOTICE);
+            
+            $products = $query->getResult();
+            error_log('Debug: count native = ' . count($products), E_USER_NOTICE);    
+        } else {
+            $products = $repository->findAll();
+        }
         
         return new Response($this->view('product_list.html.twig', array('products' => $products)));
     }

@@ -28,52 +28,39 @@
 	</head>
 	
 	<body>
-    
-{#     	<div class="container">#}
-			<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom box-shadow">
-             	<div class="container d-flex flex-column flex-md-row align-items-center p-3 px-md-4">
-                	<h5 class="my-0 mr-md-auto font-weight-normal">Аптека у Айболита</h5>
-              		<nav class="my-2 my-md-0 mr-md-3">
-                        <a class="p-2 text-dark" href="{{ path('product_list') }}">Список товаров</a>
-                        <a class="p-2 text-dark" href="{{ path('product_new') }}">Добавить товар</a>
-                        <a class="p-2 text-dark" href="#">О нас</a>
-            	    </nav>
-        	    </div>
-            </nav>
-{#             <header class="mb-3 bg-light ">#}
-            	
-{#             </header>#}
-        
-            <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        	    <h1 class="display-5">
-        			{% block page_header %}{% endblock %}  
-                </h1>
-            </div>
-    		<div class="container">
-    			{% block content %}{% endblock %}
-    			
-    			{# Этот невидимый футер нужен для скролинга контента #}
-    			<footer class="invisible">
-                  	<div class="container p-4  p-md-5">
-                  		<div class="text-center">
-                  			Copyright © 2018 Мухаматинов Ильдар	
-                  		</div>
-                	</div>
-                </footer>
-    		</div>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom box-shadow">
+         	<div class="container d-flex flex-column flex-md-row align-items-center p-3 px-md-4">
+            	<h5 class="my-0 mr-md-auto font-weight-normal"><big class="text-danger">&#10010;</big> Аптека у Айболита</h5>
+          		<nav class="my-2 my-md-0 mr-md-3">
+                    <a class="p-2 text-dark" href="{{ path('product_list') }}">Список товаров</a>
+                    <a class="p-2 text-dark" href="{{ path('product_new') }}">Добавить товар</a>
+                    <a class="p-2 text-dark" href="#">О нас</a>
+        	    </nav>
+    	    </div>
+        </nav>
+        <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    	    <h1 class="display-5">
+    			{% block page_header %}{% endblock %}  
+            </h1>
+        </div>
+		<div class="container">
+			{% block content %}{% endblock %}
 			
-    
-    		<footer class="fixed-bottom bg-light border-top text-dark">
+			{# Этот невидимый футер нужен для скролинга контента #}
+			<footer class="invisible">
               	<div class="container p-4  p-md-5">
               		<div class="text-center">
               			Copyright © 2018 Мухаматинов Ильдар	
               		</div>
-            		
             	</div>
             </footer>
-{#             <footer class="footer navbar-fixed-bottom">#}
-            	
-{#         	</footer>#}
-{#     	</div>#}
+		</div>
+		<footer class="fixed-bottom bg-light border-top text-dark">
+          	<div class="container p-4  p-md-5">
+          		<div class="text-center">
+          			Copyright © 2018 Мухаматинов Ильдар	
+        		
+        	</div>
+        </footer>
 	</body>
 </html>
